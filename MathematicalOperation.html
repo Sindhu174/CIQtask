@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <h1>Mathematical calculation using Reduce method:</h1>
+    <div>Values: <span id="ipvalue"></span></div><br>
+    <div><button onclick="findMinVal(inputArray)">Minimum val:</button>&nbsp;&nbsp; <span id="minVal"></span>
+        <div><br>
+            <div><button onclick="findMaxVal()">Maximum val:</button>&nbsp;&nbsp; <span id="maxVal"></span>
+                <div><br>
+                    <div><button onclick="findSum()">Sum:</button>&nbsp;&nbsp; <span id="sumVal"></span>
+                        <div><br>
+                            <div><button onclick="findAverage()">Average:</button>&nbsp;&nbsp; <span id="avrgVal"></span>
+                                <div>
+                                </div>
+
+
+</body>
+<script>
+    var inputArray = [45, 87, 10, 9, 25];
+    document.getElementById("ipvalue").innerHTML = inputArray;
+
+    function findMinVal() {
+        var res1 = inputArray.reduce((firstVal, nextVal) => {
+            return firstVal < nextVal ? firstVal : nextVal
+        })
+        document.getElementById("minVal").innerHTML = res1;
+    }
+
+    function findMaxVal() {
+        var res2 = inputArray.reduce((firstVal, nextVal) => {
+            return firstVal > nextVal ? firstVal : nextVal
+        })
+        document.getElementById("maxVal").innerHTML = res2;
+    }
+
+    function findSum() {
+        var res3 = inputArray.reduce((firstVal, nextVal) => {
+            return firstVal + nextVal
+        })
+        document.getElementById("sumVal").innerHTML = res3;
+    }
+
+    function findAverage() {
+         var res4 = inputArray.reduce((firstVal, nextVal) => { 
+            return firstVal + nextVal            
+        })
+        var res5 = Math.round(res4/inputArray.length)        
+        document.getElementById("avrgVal").innerHTML = res5;
+    }
+</script>
+</html>

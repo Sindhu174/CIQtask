@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+  </head>
+  
+  <body>
+    <div id="editFormDis" class="modal">
+      <div class="edit-content">
+        <span class="close" onclick="closeEForm()">&times;</span>
+        <h2>Edit form:</h2>
+        <form id="eForm">
+          Name: <input type="text" id="editname" /><br /><br />
+          Email: <input type="email" id="editemail" /><br /><br />
+          City: <input type="text" id="editcity" /><br /><br />
+          <button type="submit" onclick="doEditVal(event, editname.value, editemail.value, editcity.value)">Submit</button>
+        </form>
+      </div>
+    </div>
+
+    <div id="newUserFormDis" class="modal">
+      <div class="edit-content">
+        <span class="close" onclick="closeNForm()">&times;</span>
+        <h2>New user form:</h2>
+        <form id="nForm">
+          Name: <input type="text" id="uname" required /><br /><br />
+          Email: <input type="email" id="uemail" required /><br /><br />
+          City: <input type="text" id="ucity" required /><br /><br />
+          <button type="submit" onclick="doSubmit(event, uname.value, uemail.value, ucity.value)">Submit</button>
+        </form>
+      </div>
+    </div>
+
+    <div id="tableDisplay">
+      <h2>User details:</h2>
+      <table border="1" id="tablelist">
+        <thead>
+          <td>S. No.</td>
+          <td>Name</td>
+          <td>Email</td>
+          <td>City</td>
+          <td>Action</td>
+        </thead>
+        <tbody id="listusers"></tbody>
+      </table>
+      <br /><br />
+
+    <button onclick="addUser()" id="newUser">Add new user</button>
+    </div>
+  </body>
+  
+</html>
