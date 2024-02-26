@@ -32,3 +32,39 @@
     text-decoration: none;
     cursor: pointer;
 }
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+}
+
+
+.styled-table th {
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+
+.styled-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+
+.styled-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.styled-table tr:nth-child(odd) {
+    background-color: #ffffff;
+}
