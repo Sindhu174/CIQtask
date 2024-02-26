@@ -8,20 +8,12 @@ async function getData(){
     const response = await fetch('https://jsonplaceholder.typicode.com/users');
     const users = await response.json();
     userdetails = users;
-    console.log(users);
     doDisplay(users)
-} catch (error) {
-    console.error('Error fetching data:', error);
+    } catch (error) {
+    alert('Error fetching data:', error);
 }
 }
-// fetch("https://jsonplaceholder.typicode.com/users")
-//   .then((response) => {
-//     return response.json();
-//   })
-//   .then((users) => {
-//     userdetails = users;    
-//     doDisplay(users);    
-//   });
+
 
   function doDisplay(users){
     let userlists = document.getElementById("listusers");
