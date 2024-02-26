@@ -8,10 +8,8 @@ fetch("https://jsonplaceholder.typicode.com/users")
     return response.json();
   })
   .then((users) => {
-    userdetails = users;
-    
-    doDisplay(users);
-    
+    userdetails = users;    
+    doDisplay(users);    
   });
 
   function doDisplay(users){
@@ -28,7 +26,6 @@ fetch("https://jsonplaceholder.typicode.com/users")
             </tr>
         `;
     }
-
     userlists.innerHTML = data;
     }
 
@@ -38,22 +35,18 @@ function doEdit(index) {
   document.getElementById("editname").value = userdetails[index].name;
   document.getElementById("editemail").value = userdetails[index].email;
   document.getElementById("editcity").value = userdetails[index].address.city;
-    resetTimeOut(); 
-    console.log(userdetails) 
-    
+  resetTimeOut(); 
+     
 }
 
-async function doDelete(index) {
+ function doDelete(index) {
   saveIndex = index;
   userdetails.splice(index, 1);
-  console.log(userdetails);
-  await toastMsg("User deleted!");
+  alert(`User ${index+1} deleted!`);
   doDisplay(userdetails)
 }
 
-function toastMsg(value){
-    alert(value)
-}
+
 
 function closeEForm() {
   document.getElementById("editFormDis").style.display = "none";
@@ -73,51 +66,31 @@ function addUser() {
 function doSubmit(event, name, email, city) {
     event.preventDefault();
     var newUser = {"name": name, "email": email, "address": {"city": city}};
-    // newUser.name = name;
-    // newUser.email = email;
-    // newUser.address = {"city": city};
-    // console.log(newUser)
-    userdetails.push(...newUser)
-
-//   if (name.length && email.length && city.length != 0) {
-//     alert("New user added!");
-//   }
-console.log(userdetails)
+    userdetails.push({...newUser})
+    closeNForm();
+    alert(`User ${userdetails.length} added!`)
     doDisplay(userdetails)
-    resetTimeOut()
-    
- 
-  }
+    resetTimeOut();
+    }
 
 function doEditVal(event, edname, edemail, edcity) {
-    event.preventDefault();
-    
-  userdetails[saveIndex].name = edname;
-  userdetails[saveIndex].email = edemail;
-  userdetails[saveIndex].address.city = edcity;
-//   if (edname.length && edemail.length && edcity.length != 0) {
-//     alert("User details edited!");
-//   }
+    event.preventDefault();    
+    userdetails[saveIndex].name = edname;
+    userdetails[saveIndex].email = edemail;
+    userdetails[saveIndex].address.city = edcity;
     closeEForm();
-  doDisplay(userdetails)
-  resetTimeOut();
-  
- 
+    alert(`User ${saveIndex+1} edited!`);
+    doDisplay(userdetails);
+    resetTimeOut();
 }
 
 function inactive() {
     closeEForm();
     closeNForm();
-// document.getElementById("editFormDis").style.display = "none";
-// document.getElementById("newUserFormDis").style.display = "none";
 }
 
 function resetTimeOut() {
     clearTimeout(inactivity)
-     inactivity = setTimeout(inactive, 6000);
-
-
-//  
-  
+    var inactivity = setTimeout(inactive, 60000);
 }
 
