@@ -1,5 +1,5 @@
-document.addEventListener("mousemove", resetTimeOut);
-document.addEventListener("keypress", resetTimeOut);
+document.addEventListener("mousemove", resetInactivityTimerE, resetInactivityTimerN);
+document.addEventListener("keypress", resetInactivityTimerE, resetInactivityTimerN);
 
 var userdetails, saveIndex;
 var table = document.getElementById("tablelist");
@@ -38,7 +38,7 @@ function doEdit(index) {
   document.getElementById("editname").value = userdetails[index].name;
   document.getElementById("editemail").value = userdetails[index].email;
   document.getElementById("editcity").value = userdetails[index].address.city;
-  resetTimeOut(); 
+  
      
 }
 
@@ -50,30 +50,30 @@ function doEdit(index) {
 }
 
 
-
-function closeEForm() {
+function hideEditForm() {
   document.getElementById("editFormDis").style.display = "none";
   document.getElementById("eForm").reset();
 }
 
-function closeNForm() {
+function showNewUserForm(){
+  document.getElementById("newUserFormDis").style.display = "block"
+  resetInactivityTimerN();
+}
+
+function hideNewUserForm() {
   document.getElementById("newUserFormDis").style.display = "none";
   document.getElementById("nForm").reset();
 }
 
-function addUser() {
-  document.getElementById("newUserFormDis").style.display = "block";
-  resetTimeOut();
-}
 
 function doSubmit(event, name, email, city) {
     event.preventDefault();
     var newUser = {"name": name, "email": email, "address": {"city": city}};
     userdetails.push({...newUser})
-    closeNForm();
+    hideNewUserForm();
     alert(`User ${userdetails.length} added!`)
     doDisplay(userdetails)
-    resetTimeOut();
+    
     }
 
 function doEditVal(event, edname, edemail, edcity) {
@@ -81,19 +81,33 @@ function doEditVal(event, edname, edemail, edcity) {
     userdetails[saveIndex].name = edname;
     userdetails[saveIndex].email = edemail;
     userdetails[saveIndex].address.city = edcity;
-    closeEForm();
+    hideEditForm();
     alert(`User ${saveIndex+1} edited!`);
     doDisplay(userdetails);
-    resetTimeOut();
+    resetInactivityTimerE(); 
 }
 
-function inactive() {
-    closeEForm();
-    closeNForm();
+
+var inactiveE, inactiveN;
+
+
+function startInactivityTimerE() {
+  inactiveE = setTimeout(hideEditForm, 30000); 
 }
 
-function resetTimeOut() {
-    clearTimeout(inactivity)
-    var inactivity = setTimeout(inactive, 60000);
+function resetInactivityTimerE() {
+  clearTimeout(inactiveE);
+  startInactivityTimerE();
 }
+
+function startInactivityTimerN() {
+  inactiveN = setTimeout(hideNewUserForm, 30000); 
+}
+
+function resetInactivityTimerN() {
+  clearTimeout(inactiveN);
+  startInactivityTimerN();
+}
+
+
 
