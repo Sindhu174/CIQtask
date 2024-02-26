@@ -1,7 +1,7 @@
 document.addEventListener("mousemove", resetTimeOut);
 document.addEventListener("keypress", resetTimeOut);
 
-var result, userdetails, saveIndex;
+var userdetails, saveIndex;
 var table = document.getElementById("tablelist");
 async function getData(){
   try {
